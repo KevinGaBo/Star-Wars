@@ -4,7 +4,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			demo: [
 				{
 					title: "FIRST",
-					background: "white",
+					background: "lightGrey",
 					initial: "white"
 				},
 				{
@@ -12,17 +12,40 @@ const getState = ({ getStore, getActions, setStore }) => {
 					background: "white",
 					initial: "white"
 				}
-			]
+			],
+			characters: [],
+			planets: [],
+			vehicles: [],
+			vehicle: {}
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
+			}, 
+			getVehicleById: (id) => {
+				fetch(`https://www.swapi.tech/api/vehicles/`+id)
+					.then(res => res.json())
+					.then(data => setStore({ vehicle: data.result.properties }))
+					.catch(err => console.error(err))
 			},
-			loadSomeData: () => {
-				/**
-					fetch().then().then(data => setStore({ "foo": data.bar }))
-				*/
+			getCharacters: () => {
+				fetch("https://www.swapi.tech/api/people")
+					.then(res => res.json())
+					.then(data => setStore({ characters: data.results }))
+					.catch(error => ('Error fetching data:', error));
+			},
+			getPlanets: () => {
+				fetch("https://www.swapi.tech/api/planets/")
+					.then(res => res.json())
+					.then(data => setStore({ planets: data.results }))
+					.catch(error => ('Error fetching data:', error));
+			},
+			getVehicles: () => {
+				fetch("https://www.swapi.tech/api/vehicles/")
+					.then(res => res.json())
+					.then(data => setStore({ vehicles: data.results }))
+					.catch(error => ('Error fetching data:', error));
 			},
 			changeColor: (index, color) => {
 				//get the store

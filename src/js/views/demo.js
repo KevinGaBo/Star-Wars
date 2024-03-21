@@ -6,38 +6,84 @@ import { Context } from "../store/appContext";
 import "../../styles/demo.css";
 
 export const Demo = () => {
+
 	const { store, actions } = useContext(Context);
 
+	const characters = store.characters
+	const planets = store.planets
+	const vehicles = store.vehicles
+	const vehicle = store.vehicle
+
+
+	console.log(vehicle)
+
+
+	/*   
+	  const navigate = useNavigate(); */
+
+
 	return (
-		<div className="container">
-			<ul className="list-group">
-				{store.demo.map((item, index) => {
-					return (
-						<li
-							key={index}
-							className="list-group-item d-flex justify-content-between"
-							style={{ background: item.background }}>
-							<Link to={"/single/" + index}>
-								<span>Link to: {item.title}</span>
-							</Link>
-							{// Conditional render example
-							// Check to see if the background is orange, if so, display the message
-							item.background === "orange" ? (
-								<p style={{ color: item.initial }}>
-									Check store/flux.js scroll to the actions to see the code
-								</p>
-							) : null}
-							<button className="btn btn-success" onClick={() => actions.changeColor(index, "orange")}>
-								Change Color
-							</button>
-						</li>
-					);
-				})}
-			</ul>
-			<br />
-			<Link to="/">
-				<button className="btn btn-primary">Back home</button>
+		<div>
+			<div className="characters" style={{ display: "flex", overflowX: "auto", whiteSpace: "nowrap" }}>
+			<Link to="/characters">
+				<button className="btn btn-danger mx-3" >Ver personajes</button>
 			</Link>
+				{characters?.map((character) => (
+					<div key={character.uid} className="card mt-2" style={{ width: "18rem", margin: "0 0.5rem" }}>
+						<div className="card-body">
+							<img
+								src={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`}
+								style={{ maxWidth: "100%" }} />
+							<h5
+								className="card-title"
+								style={{ maxWidth: "100%" }}>{character.name}</h5>
+							<a href="#" className="btn btn-primary">Ver</a>
+						</div>
+					</div>
+				))}
+			</div>
+			<div style={{ display: "flex", overflowX: "auto", whiteSpace: "nowrap" }}>
+			<Link to="/planets">
+				<button className="btn btn-danger mx-3" >Ver planetas</button>
+			</Link>
+				{planets?.map((planets) => (
+					<div key={planets.uid} className="card mt-2" style={{ width: "18rem", margin: "0 0.5rem" }}>
+						<div className="card-body">
+							<img
+								src={`https://starwars-visualguide.com/assets/img/planets/${planets.uid}.jpg`}
+								style={{ maxWidth: "100%" }} />
+							<h5
+								className="card-title"
+								style={{ maxWidth: "100%" }}>{planets.name}</h5>
+							<a href="#" className="btn btn-primary">Ver</a>
+						</div>
+					</div>
+				))}
+				
+			</div>
+			<div style={{ display: "flex", overflowX: "auto", whiteSpace: "nowrap" }}>
+			<Link to="/vehicles">
+				<button className="btn btn-danger mx-3" >Ver vehiculos</button>
+			</Link>
+				{vehicles?.map((vehicles) => {
+					actions.getVehicleById (vehicles.uid)
+					return (
+					<div key={vehicles.uid} className="card mt-2" style={{ width: "18rem", margin: "0 0.5rem" }}>
+						<div className="card-body">
+							<img
+								src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicles.uid}.jpg`}
+								style={{ maxWidth: "100%" }} />
+							<h5
+								className="card-title"
+								style={{ maxWidth: "100%" }}>{vehicles.name}</h5>
+									<p className="card-text"
+								style={{ maxWidth: "100%" }}>{vehicle.model}</p>
+														
+						</div>
+					</div>
+				)})}
+			</div>
 		</div>
-	);
-};
+
+	)
+}
