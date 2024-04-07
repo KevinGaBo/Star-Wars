@@ -1,3 +1,5 @@
+import { object } from "prop-types";
+
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
 		store: {
@@ -16,18 +18,14 @@ const getState = ({ getStore, getActions, setStore }) => {
 			characters: [],
 			planets: [],
 			vehicles: [],
-			vehicle: {}
+			vehicle: {},
+			character:[],
+			favorites: [],
 		},
 		actions: {
 			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
-			}, 
-			getVehicleById: (id) => {
-				fetch(`https://www.swapi.tech/api/vehicles/`+id)
-					.then(res => res.json())
-					.then(data => setStore({ vehicle: data.result.properties }))
-					.catch(err => console.error(err))
 			},
 			getCharacters: () => {
 				fetch("https://www.swapi.tech/api/people")
@@ -46,6 +44,18 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => res.json())
 					.then(data => setStore({ vehicles: data.results }))
 					.catch(error => ('Error fetching data:', error));
+			}, 
+			getVehicleById: (id) => {
+				fetch(`https://www.swapi.tech/api/vehicles/`+id)
+					.then(res => res.json())
+					.then(data => setStore({ vehicle: data.result.properties }))
+					.catch(err => console.error(err))
+			},
+			getCharacterById: (id) => {
+				fetch(`https://www.swapi.tech/api/characters/`+id)
+					.then(res => res.json())
+					.then(data => setStore({ character: data.result.properties }))
+					.catch(err => console.error(err))
 			},
 			changeColor: (index, color) => {
 				//get the store
@@ -60,6 +70,17 @@ const getState = ({ getStore, getActions, setStore }) => {
 
 				//reset the global store
 				setStore({ demo: demo });
+			},
+			addFavorites: (data) => {
+				setStore({ favorites: [...getStore().favorites, data] })
+			},
+			removeFavorites: (data) => {				
+				 let newFavorites =  getStore().favorites.filter((favorite, index) => {
+					return index !== data 
+				}) 
+				setStore({
+					favorites: newFavorites
+				})
 			}
 		}
 	};

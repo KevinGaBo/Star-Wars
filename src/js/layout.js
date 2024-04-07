@@ -9,6 +9,8 @@ import injectContext from "./store/appContext";
 import { Characters } from "./views/characters";
 import { Planets } from "./views/planets";
 import { Vehicles } from "./views/vehicles";
+import { SingleCard } from "./views/singleCard";
+
 
 
 
@@ -27,6 +29,7 @@ const Layout = () => {
 				<ScrollToTop>
 					<Navbar />
 					<Routes>
+						<Route path="/:type/:uid" element={<SingleCard />} />
 						<Route path="/vehicles" element={<Vehicles />} />
 						<Route path="/planets" element={<Planets />} />
 						<Route path="/characters" element={<Characters />} />

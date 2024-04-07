@@ -1,0 +1,52 @@
+.demoContainer {
+    background-image: url('https://cdn.pixabay.com/animation/2023/03/19/02/34/02-34-11-741_512.gif');
+    background-size: cover;
+    background-position: center;
+    width: calc(100vw + 54rem);
+    height: calc(100vh + 10rem);
+    margin-left: -10px;
+    margin-right: -10px;
+}
+
+.generalCards {
+
+    background-size: cover;
+    background-position: center;
+    width: calc(100vw + 106rem);
+    height: 100vh;
+}
+
+.stylesCard {
+    display: flex;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 200rem;
+    justify-content: center;
+    position: absolute;
+    margin-top: 10%;
+}
+
+.singleCard {
+    background-image: url('https://cdn.pixabay.com/animation/2023/03/19/02/34/02-34-11-741_512.gif');
+    background-size: cover;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+}
+
+.favoriteButton {
+    color: #f50057;
+    font-size: 24px;
+    bottom: 10px;
+    right: 10px;
+    outline: none;
+}
+
+.favoriteButton:active {
+    color: #f1e2e2;
+}
+
+.buttonContainer {
+    display: flex;
+    align-items: center;
+}

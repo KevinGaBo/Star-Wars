@@ -12,76 +12,86 @@ export const Demo = () => {
 	const characters = store.characters
 	const planets = store.planets
 	const vehicles = store.vehicles
-	const vehicle = store.vehicle
 
+	const [errorImageUrl, setErrorImageUrl] = useState('https://i.pinimg.com/474x/9f/d0/02/9fd00203ccb2d3b53270623f7c5e8482.jpg');
 
-	console.log(vehicle)
-
-
-	/*   
-	  const navigate = useNavigate(); */
-
+	const handleImageError = (event) => {
+	  event.target.src = errorImageUrl; 
+	};
 
 	return (
-		<div>
-			<div className="characters" style={{ display: "flex", overflowX: "auto", whiteSpace: "nowrap" }}>
-			<Link to="/characters">
-				<button className="btn btn-danger mx-3" >Ver personajes</button>
-			</Link>
+		<div className="demoContainer">
+			<div className="characters" 
+				style={{ 
+					display: "flex", 
+					overflowX: "auto", 
+					whiteSpace: "nowrap", 
+					width: "150rem" }}>
+				<Link to="/characters">
+					<button className="btn btn-danger mx-3" >Ver personajes</button>
+				</Link>
 				{characters?.map((character) => (
-					<div key={character.uid} className="card mt-2" style={{ width: "18rem", margin: "0 0.5rem" }}>
+					<div key={character.uid} 
+						className="card mt-2" 
+						style={{ width: "18rem", margin: "0 0.5rem" }}>
 						<div className="card-body">
 							<img
 								src={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`}
-								style={{ maxWidth: "100%" }} />
+								style={{ maxWidth: "100%" }}
+								onError={handleImageError} 
+								/>
 							<h5
 								className="card-title"
 								style={{ maxWidth: "100%" }}>{character.name}</h5>
-							<a href="#" className="btn btn-primary">Ver</a>
 						</div>
 					</div>
 				))}
 			</div>
-			<div style={{ display: "flex", overflowX: "auto", whiteSpace: "nowrap" }}>
-			<Link to="/planets">
-				<button className="btn btn-danger mx-3" >Ver planetas</button>
-			</Link>
+			<div className="planets"
+				style={{ display: "flex", overflowX: "auto", whiteSpace: "nowrap", width: "150rem" }}>
+				<Link to="/planets">
+					<button className="btn btn-danger mx-3" >Ver planetas</button>
+				</Link>
 				{planets?.map((planets) => (
-					<div key={planets.uid} className="card mt-2" style={{ width: "18rem", margin: "0 0.5rem" }}>
+					<div key={planets.uid} 
+						className="card mt-2" 
+						style={{ width: "18rem", margin: "0 0.5rem" }}>
 						<div className="card-body">
 							<img
 								src={`https://starwars-visualguide.com/assets/img/planets/${planets.uid}.jpg`}
-								style={{ maxWidth: "100%" }} />
+								style={{ maxWidth: "100%" }}
+								onError={handleImageError} 
+								/>
 							<h5
 								className="card-title"
 								style={{ maxWidth: "100%" }}>{planets.name}</h5>
-							<a href="#" className="btn btn-primary">Ver</a>
 						</div>
 					</div>
 				))}
-				
+
 			</div>
-			<div style={{ display: "flex", overflowX: "auto", whiteSpace: "nowrap" }}>
-			<Link to="/vehicles">
-				<button className="btn btn-danger mx-3" >Ver vehiculos</button>
-			</Link>
+			<div className="vehicles"
+				style={{ display: "flex", overflowX: "auto", whiteSpace: "nowrap", width: "150rem" }}>
+				<Link to="/vehicles">
+					<button className="btn btn-danger mx-3" >Ver vehiculos</button>
+				</Link>
 				{vehicles?.map((vehicles) => {
-					actions.getVehicleById (vehicles.uid)
 					return (
-					<div key={vehicles.uid} className="card mt-2" style={{ width: "18rem", margin: "0 0.5rem" }}>
-						<div className="card-body">
-							<img
-								src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicles.uid}.jpg`}
-								style={{ maxWidth: "100%" }} />
-							<h5
-								className="card-title"
-								style={{ maxWidth: "100%" }}>{vehicles.name}</h5>
-									<p className="card-text"
-								style={{ maxWidth: "100%" }}>{vehicle.model}</p>
-														
+						<div key={vehicles.uid} className="card mt-2" style={{ width: "18rem", margin: "0 0.5rem" }}>
+							<div className="card-body">
+								<img
+									src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicles.uid}.jpg`}
+									style={{ maxWidth: "100%" }} 
+									onError={handleImageError} 
+									/>
+								<h5
+									className="card-title"
+									style={{ maxWidth: "100%" }}>{vehicles.name}</h5>
+
+							</div>
 						</div>
-					</div>
-				)})}
+					)
+				})}
 			</div>
 		</div>
 
