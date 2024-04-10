@@ -19,7 +19,7 @@ const getState = ({ getStore, getActions, setStore }) => {
 			planets: [],
 			vehicles: [],
 			vehicle: {},
-			character:[],
+			character: [],
 			favorites: [],
 		},
 		actions: {
@@ -44,19 +44,22 @@ const getState = ({ getStore, getActions, setStore }) => {
 					.then(res => res.json())
 					.then(data => setStore({ vehicles: data.results }))
 					.catch(error => ('Error fetching data:', error));
-			}, 
+			},
 			getVehicleById: (id) => {
-				fetch(`https://www.swapi.tech/api/vehicles/`+id)
+				fetch(`https://www.swapi.tech/api/vehicles/` + id)
 					.then(res => res.json())
 					.then(data => setStore({ vehicle: data.result.properties }))
 					.catch(err => console.error(err))
 			},
-			getCharacterById: (id) => {
-				fetch(`https://www.swapi.tech/api/characters/`+id)
-					.then(res => res.json())
-					.then(data => setStore({ character: data.result.properties }))
-					.catch(err => console.error(err))
-			},
+			getCharacterById: async (id) => {
+				const response = await fetch(`https://www.swapi.tech/api/characters/` + id);
+				if (!response.ok) {
+					throw new Error("Error al obtener los personajes de la API");
+				}
+				const data = await response.json();
+				const characters = data.results;
+				setStore({ character: characters })
+				},
 			changeColor: (index, color) => {
 				//get the store
 				const store = getStore();
@@ -74,13 +77,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 			addFavorites: (data) => {
 				setStore({ favorites: [...getStore().favorites, data] })
 			},
-			removeFavorites: (data) => {				
+			removeFavorites: (data) => {
 				const newFavorites = getStore().favorites.filter(favorite => favorite !== data);
 				setStore({
 					favorites: newFavorites
 				});
 			}
-			
+
 		}
 	};
 };
