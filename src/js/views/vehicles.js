@@ -2,6 +2,8 @@ import React, { useState, useEffect, useNavigate, useContext } from "react";
 import { Context } from "../store/appContext";
 import { Link } from "react-router-dom";
 import "../../styles/demo.css";
+import { MdFavorite } from "react-icons/md";
+
 
 
 
@@ -26,7 +28,7 @@ export const Vehicles = () => {
     }}>
       <div className="stylesCard">
         {vehicles?.map((vehicles) => (
-          <div key={vehicles.uid} className="card" style={{ width: "18rem", margin: "0 0.5rem" }}>
+          <div key={vehicles.uid} className="card vehicles" style={{ margin: "0 0.5rem" }}>
             <div className="card-body">
               <img
                 src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicles.uid}.jpg`}
@@ -42,6 +44,19 @@ export const Vehicles = () => {
               <Link to="/demo">
                 <button className="btn btn-primary mx-3 " >Vuelve atras</button>
               </Link>
+              <Link>
+                  <button
+                    className="btn favoriteButton"
+                    style={{ color: store.favorites.includes(vehicles.name) ? "#ff0000" : "#f1e2e2" }}
+                    onClick={() => {
+                      if (!store.favorites.includes(vehicles.name)){
+                        actions.addFavorites(vehicles.name)
+                      }
+                      else {actions.removeFavorites(vehicles.name)}
+                    }}
+                  ><MdFavorite />
+                  </button>
+                </Link>
             </div>
           </div>
         ))}

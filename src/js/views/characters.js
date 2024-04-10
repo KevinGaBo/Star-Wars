@@ -35,7 +35,7 @@ export const Characters = () => {
     }}>
       <div className="stylesCard">
         {characters?.map((character) => (
-          <div key={character.uid} className="card" style={{ margin: "0 0.5rem" }}>
+          <div key={character.uid} className="card character" style={{ margin: "0 0.5rem" }}>
             <div className="card-body" >
               <img
                 src={`https://starwars-visualguide.com/assets/img/characters/${character.uid}.jpg`}

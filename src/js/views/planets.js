@@ -2,6 +2,8 @@ import React, { useState, useEffect, useContext } from 'react';
 import { Context } from '../store/appContext';
 import { Link } from "react-router-dom";
 import "../../styles/demo.css";
+import { MdFavorite } from "react-icons/md";
+
 
 
 export const Planets = () => {
@@ -25,7 +27,7 @@ export const Planets = () => {
     }}>
       <div className='stylesCard'>
         {planets?.map((planet) => (
-          <div key={planet.uid} className="card" style={{ width: "18rem", margin: "0 0.5rem" }}>
+          <div key={planet.uid} className="card" style={{ width: "19rem", margin: "0 0.5rem" }}>
             <div className="card-body">
               <img
                 src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`}
@@ -46,6 +48,19 @@ export const Planets = () => {
               <Link to="/demo">
                 <button className="btn btn-primary ms-2 " >Vuelve atras</button>
               </Link>
+              <Link>
+                  <button
+                    className="btn favoriteButton"
+                    style={{ color: store.favorites.includes(planet.name) ? "#ff0000" : "#f1e2e2" }}
+                    onClick={() => {
+                      if (!store.favorites.includes(planet.name)){
+                        actions.addFavorites(planet.name)
+                      }
+                      else {actions.removeFavorites(planet.name)}
+                    }}
+                  ><MdFavorite />
+                  </button>
+                </Link>
               </div>
             </div>
           </div>

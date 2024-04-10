@@ -2,28 +2,29 @@
     background-image: url('https://cdn.pixabay.com/animation/2023/03/19/02/34/02-34-11-741_512.gif');
     background-size: cover;
     background-position: center;
-    width: calc(100vw + 54rem);
-    height: calc(100vh + 10rem);
-    margin-left: -10px;
-    margin-right: -10px;
+    overflow-x: scroll;
 }
 
 .generalCards {
-
     background-size: cover;
     background-position: center;
-    width: calc(100vw + 106rem);
-    height: 100vh;
+    overflow-x: scroll;
+    height: 83vh;
+    overflow-y: hidden;
 }
 
 .stylesCard {
     display: flex;
-    overflow-x: auto;
-    white-space: nowrap;
+/*     overflow-x: scroll;*/
+     white-space: nowrap;
     width: 200rem;
-    justify-content: center;
+    padding: 15px;
+    /* justify-content: center;
     position: absolute;
-    margin-top: 10%;
+    margin-top: 10%; */
+    background-size: cover;
+    background-position: center;
+    /* overflow-x: scroll; */
 }
 
 .singleCard {
@@ -49,4 +50,13 @@
 .buttonContainer {
     display: flex;
     align-items: center;
+}
+
+.vehicles {
+    width: 100%;
+    min-width: 12%
+}
+.character {
+    width: 30rem;
+    min-width: 10%;
 }
