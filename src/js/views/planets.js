@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from 'react';
+import React, { useState, useContext } from 'react';
 import { Context } from '../store/appContext';
 import { Link } from "react-router-dom";
 import "../../styles/demo.css";
@@ -32,16 +32,14 @@ export const Planets = () => {
               <img
                 src={`https://starwars-visualguide.com/assets/img/planets/${planet.uid}.jpg`}
                 style={{ maxWidth: "100%" }}
-                onError={handleImageError}
-              />
+                onError={handleImageError} />
               <h5
                 className="card-title"
                 style={{ maxWidth: "100%" }}>{planet.name}</h5>
                 <div 
                   style={{ 
                     display: "flex",
-                    marginLeft: "auto" }}
-                >
+                    marginLeft: "auto" }}>
               <Link to={`/planets/${planet.uid}`}>
                 <button className="btn btn-danger me-2" >Ver planeta</button>
               </Link>

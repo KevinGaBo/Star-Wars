@@ -1,13 +1,12 @@
 import React, { useState, useContext, useEffect } from "react";
 import { Context } from "../store/appContext";
 import { Link, useParams } from "react-router-dom";
-import { Planets } from "./planets";
 
 
 
 export const SingleCard = () => {
 
-  const { store, actions } = useContext(Context);
+  const { store } = useContext(Context);
   const character = store.character;
   
   const params = useParams()
@@ -18,16 +17,12 @@ export const SingleCard = () => {
     event.target.src = errorImageUrl;
   };
   
-  console.log("CARD", card)
-
   useEffect(() => {
-    fetch(`https://www.swapi.tech/api/${params.type}/${params.uid}`)
+    fetch(`${process.env.BASE_URL}${params.type}/${params.uid}`)
       .then(res => res.json())
       .then(data => setCard(data.result.properties))
       .catch(err => console.error(err))
   }, [])
-
-
 
   let content;
 
@@ -61,13 +56,15 @@ export const SingleCard = () => {
         </div>
       );
       break;
-
     case "people":
       content = (
         <div className="singleCard">
           <div className="row g-0">
             <div className="col-md-4">
-              <img src={`https://starwars-visualguide.com/assets/img/characters/${params.uid}.jpg`} className="img-fluid rounded-start" alt="..." />
+              <img 
+                src={`https://starwars-visualguide.com/assets/img/characters/${params.uid}.jpg`} 
+                className="img-fluid rounded-start" 
+                alt="..." />
             </div>
             <div className="col-md-8">
               <div className="card-body">
@@ -87,13 +84,15 @@ export const SingleCard = () => {
         </div>
       );
       break;
-
     case "vehicles":
       content = (
         <div className="singleCard">
           <div className="row g-0">
             <div className="col-md-4">
-              <img src={`https://starwars-visualguide.com/assets/img/vehicles/${params.uid}.jpg`} className="img-fluid rounded-start" alt="..." />
+              <img 
+                src={`https://starwars-visualguide.com/assets/img/vehicles/${params.uid}.jpg`} 
+                className="img-fluid rounded-start" 
+                alt="..." />
             </div>
             <div className="col-md-8">
               <div className="card-body">

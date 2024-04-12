@@ -4,6 +4,13 @@
     background-position: center;
     overflow-x: scroll;
 }
+.demoCards {
+    display: flex ;
+    overflow-x: auto;
+    white-space: nowrap;
+    width: 150rem;
+    margin-bottom: 2px;
+}
 
 .generalCards {
     background-size: cover;
@@ -11,20 +18,17 @@
     overflow-x: scroll;
     height: 83vh;
     overflow-y: hidden;
+    background-image: url("https://i.blogs.es/23b58b/star-wars-wallpapers-6/450_1000.jpg");
+    
 }
 
 .stylesCard {
     display: flex;
-/*     overflow-x: scroll;*/
-     white-space: nowrap;
+    white-space: nowrap;
     width: 200rem;
     padding: 15px;
-    /* justify-content: center;
-    position: absolute;
-    margin-top: 10%; */
     background-size: cover;
     background-position: center;
-    /* overflow-x: scroll; */
 }
 
 .singleCard {
@@ -55,6 +59,7 @@
 .vehicles {
     width: 100%;
     min-width: 12%
+
 }
 .character {
     width: 30rem;

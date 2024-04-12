@@ -33,11 +33,11 @@ export const Vehicles = () => {
               <img
                 src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicles.uid}.jpg`}
                 style={{ maxWidth: "100%" }}
-                onError={handleImageError}
-              />
+                onError={handleImageError}/>
               <h5
                 className="card-title"
-                style={{ maxWidth: "100%" }}>{vehicles.name}</h5>
+                style={{ maxWidth: "100%" }}>{vehicles.name}
+              </h5>
               <Link to={`/vehicles/${vehicles.uid}`}>
                 <button className="btn btn-danger mx-3" >Ver vehiculo</button>
               </Link>
@@ -53,8 +53,8 @@ export const Vehicles = () => {
                         actions.addFavorites(vehicles.name)
                       }
                       else {actions.removeFavorites(vehicles.name)}
-                    }}
-                  ><MdFavorite />
+                    }}>
+                    <MdFavorite />
                   </button>
                 </Link>
             </div>

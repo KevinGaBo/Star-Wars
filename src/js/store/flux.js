@@ -1,4 +1,3 @@
-import { object } from "prop-types";
 
 const getState = ({ getStore, getActions, setStore }) => {
 	return {
@@ -23,36 +22,35 @@ const getState = ({ getStore, getActions, setStore }) => {
 			favorites: [],
 		},
 		actions: {
-			// Use getActions to call a function within a fuction
 			exampleFunction: () => {
 				getActions().changeColor(0, "green");
 			},
 			getCharacters: () => {
-				fetch("https://www.swapi.tech/api/people")
+				fetch(`${process.env.BASE_URL}/people`)
 					.then(res => res.json())
 					.then(data => setStore({ characters: data.results }))
 					.catch(error => ('Error fetching data:', error));
 			},
 			getPlanets: () => {
-				fetch("https://www.swapi.tech/api/planets/")
+				fetch(`${process.env.BASE_URL}/planets/`)
 					.then(res => res.json())
 					.then(data => setStore({ planets: data.results }))
 					.catch(error => ('Error fetching data:', error));
 			},
 			getVehicles: () => {
-				fetch("https://www.swapi.tech/api/vehicles/")
+				fetch(`${process.env.BASE_URL}/vehicles/`)
 					.then(res => res.json())
 					.then(data => setStore({ vehicles: data.results }))
 					.catch(error => ('Error fetching data:', error));
 			},
 			getVehicleById: (id) => {
-				fetch(`https://www.swapi.tech/api/vehicles/` + id)
+				fetch(`${process.env.BASE_URL}/vehicles/` + id)
 					.then(res => res.json())
 					.then(data => setStore({ vehicle: data.result.properties }))
 					.catch(err => console.error(err))
 			},
 			getCharacterById: async (id) => {
-				const response = await fetch(`https://www.swapi.tech/api/characters/` + id);
+				const response = await fetch(`${process.env.BASE_URL}/characters/` + id);
 				if (!response.ok) {
 					throw new Error("Error al obtener los personajes de la API");
 				}
@@ -61,17 +59,13 @@ const getState = ({ getStore, getActions, setStore }) => {
 				setStore({ character: characters })
 				},
 			changeColor: (index, color) => {
-				//get the store
 				const store = getStore();
 
-				//we have to loop the entire demo array to look for the respective index
-				//and change its color
 				const demo = store.demo.map((elm, i) => {
 					if (i === index) elm.background = color;
 					return elm;
 				});
 
-				//reset the global store
 				setStore({ demo: demo });
 			},
 			addFavorites: (data) => {

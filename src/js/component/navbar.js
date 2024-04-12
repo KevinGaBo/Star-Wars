@@ -15,13 +15,16 @@ export const Navbar = () => {
                 backgroundImage: `url(${backgroundImageUrl})`,
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
-            }}
-        >
+            }}>
             <Link to="/">
                 <button className="btn btn-primary">Back to Home</button>
             </Link>
             <div className="dropdown">
-                <button className="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <button 
+                    className="btn btn-secondary dropdown-toggle" 
+                    type="button" 
+                    data-bs-toggle="dropdown" 
+                    aria-expanded="false">
                     {store.favorites.length} Favoritos
                 </button>
                 <ul className="dropdown-menu">
@@ -30,9 +33,8 @@ export const Navbar = () => {
                             <p>{favorite}</p>
                             <FaRegTrashAlt
                                 onClick={() => {
-                                    actions.removeFavorites(index)
-                                }}
-                            />
+                                    actions.removeFavorites(favorite)
+                                }}/>
                         </li>
                     ))}
                 </ul>

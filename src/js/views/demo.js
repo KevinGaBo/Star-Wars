@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useContext } from "react";
+import React, { useState, useContext } from "react";
 import { Link } from "react-router-dom";
 
 import { Context } from "../store/appContext";
@@ -7,13 +7,13 @@ import "../../styles/demo.css";
 
 export const Demo = () => {
 
-	const { store, actions } = useContext(Context);
+	const { store } = useContext(Context);
 
 	const characters = store.characters
 	const planets = store.planets
 	const vehicles = store.vehicles
 
-	const [errorImageUrl, setErrorImageUrl] = useState('https://i.pinimg.com/474x/9f/d0/02/9fd00203ccb2d3b53270623f7c5e8482.jpg');
+	const [errorImageUrl] = useState('https://i.pinimg.com/474x/9f/d0/02/9fd00203ccb2d3b53270623f7c5e8482.jpg');
 
 	const handleImageError = (event) => {
 	  event.target.src = errorImageUrl; 
@@ -21,12 +21,7 @@ export const Demo = () => {
 
 	return (
 		<div className="demoContainer">
-			<div className="characters" 
-				style={{ 
-					display: "flex", 
-					overflowX: "auto", 
-					whiteSpace: "nowrap", 
-					width: "150rem" }}>
+			<div className="characters demoCards">
 				<Link to="/characters">
 					<button className="btn btn-danger mx-3" >Ver personajes</button>
 				</Link>
@@ -42,13 +37,13 @@ export const Demo = () => {
 								/>
 							<h5
 								className="card-title"
-								style={{ maxWidth: "100%" }}>{character.name}</h5>
+								style={{ maxWidth: "100%" }}>{character.name}
+							</h5>
 						</div>
 					</div>
 				))}
 			</div>
-			<div className="planets"
-				style={{ display: "flex", overflowX: "auto", whiteSpace: "nowrap", width: "150rem" }}>
+			<div className="planets demoCards">
 				<Link to="/planets">
 					<button className="btn btn-danger mx-3" >Ver planetas</button>
 				</Link>
@@ -68,7 +63,6 @@ export const Demo = () => {
 						</div>
 					</div>
 				))}
-
 			</div>
 			<div className="vehicles"
 				style={{ display: "flex", overflowX: "auto", whiteSpace: "nowrap", width: "150rem" }}>
@@ -86,8 +80,8 @@ export const Demo = () => {
 									/>
 								<h5
 									className="card-title"
-									style={{ maxWidth: "100%" }}>{vehicles.name}</h5>
-
+									style={{ maxWidth: "100%" }}>{vehicles.name}
+								</h5>
 							</div>
 						</div>
 					)

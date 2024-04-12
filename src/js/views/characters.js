@@ -7,33 +7,28 @@ import { MdFavorite } from "react-icons/md";
 export const Characters = () => {
   const { store, actions } = useContext(Context);
   const characters = store.characters;
-  const backgroundImageUrl = "https://i.blogs.es/23b58b/star-wars-wallpapers-6/450_1000.jpg";
   const errorImageUrl = "https://i.pinimg.com/originals/e8/63/92/e863927635dc1c5aba5663e8dd33efa0.jpg";
 
-  const [imageError, setImageError] = useState({}); // State to track which images have errors
+  const [imageError, setImageError] = useState({}); 
 
-  // Handler for favoriting/unfavoriting a character
-  const handleFavoriteClick = (character) => {
-    if (!store.favorites.includes(character.name)) {
-      actions.addFavorites(character.name);
-    } else {
-      actions.removeFavorites(character.name);
-    }
-  };
-
-  // Handler for image error
   const handleImageError = (event, character) => {
     event.target.style.width = "300px";
     event.target.style.height = "160px";
     event.target.src = errorImageUrl;
     setImageError(prevState => ({
       ...prevState,
-      [character.uid]: true // Marking the character as having an error image
+      [character.uid]: true 
     }));
+  };
+  
+  const handleFavoriteClick = (character) => {
+    if (!store.favorites.includes(character.name)) {
+      actions.addFavorites(character.name);
+    } else {actions.removeFavorites(character.name);}
   };
 
   return (
-    <div className="generalCards" style={{ backgroundImage: `url(${backgroundImageUrl})` }}>
+    <div className="generalCards">
       <div className="stylesCard">
         {characters?.map((character) => (
           <div key={character.uid} className="card character" style={{ margin: "0 0.5rem" }}>
@@ -54,8 +49,7 @@ export const Characters = () => {
                 <button
                   className="btn favoriteButton"
                   style={{ color: store.favorites.includes(character.name) ? "#ff0000" : "#f1e2e2" }}
-                  onClick={() => handleFavoriteClick(character)}
-                >
+                  onClick={() => handleFavoriteClick(character)}>
                   <MdFavorite />
                 </button>
               </div>
