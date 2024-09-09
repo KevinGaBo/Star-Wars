@@ -9,7 +9,7 @@
     overflow-x: auto;
     white-space: nowrap;
     width: 150rem;
-    margin-bottom: 2px;
+    margin: 1rem;
 }
 
 .generalCards {
@@ -64,4 +64,7 @@
 .character {
     width: 30rem;
     min-width: 10%;
+}
+.btnDemo {
+    width: 10rem;
 }

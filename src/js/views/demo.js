@@ -23,7 +23,7 @@ export const Demo = () => {
 		<div className="demoContainer">
 			<div className="characters demoCards">
 				<Link to="/characters">
-					<button className="btn btn-danger mx-3" >Ver personajes</button>
+					<button className="btn btnDemo btn-danger mx-3" >Ver personajes</button>
 				</Link>
 				{characters?.map((character) => (
 					<div key={character.uid} 
@@ -45,7 +45,7 @@ export const Demo = () => {
 			</div>
 			<div className="planets demoCards">
 				<Link to="/planets">
-					<button className="btn btn-danger mx-3" >Ver planetas</button>
+					<button className="btn btnDemo btn-danger mx-3" >Ver planetas</button>
 				</Link>
 				{planets?.map((planets) => (
 					<div key={planets.uid} 
@@ -64,10 +64,10 @@ export const Demo = () => {
 					</div>
 				))}
 			</div>
-			<div className="vehicles"
-				style={{ display: "flex", overflowX: "auto", whiteSpace: "nowrap", width: "150rem" }}>
+			<div className="vehicles demoCards"
+				style={{width: "150rem", height: "15rem" }}>
 				<Link to="/vehicles">
-					<button className="btn btn-danger mx-3" >Ver vehiculos</button>
+					<button className="btn btnDemo btn-danger mx-3" >Ver vehiculos</button>
 				</Link>
 				{vehicles?.map((vehicles) => {
 					return (
@@ -75,7 +75,7 @@ export const Demo = () => {
 							<div className="card-body">
 								<img
 									src={`https://starwars-visualguide.com/assets/img/vehicles/${vehicles.uid}.jpg`}
-									style={{ maxWidth: "100%" }} 
+									style={{ maxWidth: "100%", height: "10rem" }} 
 									onError={handleImageError} 
 									/>
 								<h5
